@@ -1,0 +1,16 @@
+export const ApiRoutes = {
+    accounts: {
+        prefix: "/accounts",
+    },
+    bookings: {
+        prefix: "/bookings",
+        availability: "/bookings/availability",
+    },
+    services: {
+        prefix: "/services",
+    },
+    google_maps: {
+        prefix: "/google-maps",
+        timezone: "/google-maps/timezone",
+    },
+}
