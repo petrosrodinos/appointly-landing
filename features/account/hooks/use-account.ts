@@ -1,15 +1,13 @@
 import { useQuery, } from "@tanstack/react-query";
-import { getAccount, getAccounts, } from "../services/account.services";
+import { getAccount, getProviders, } from "../services/account.services";
 import type { AccountQuery } from "../interfaces/account.interfaces";
 
-export const useGetAccounts = (query?: AccountQuery & { enabled?: boolean }) => {
+export const useGetProviders = (query?: AccountQuery) => {
     return useQuery({
-        queryKey: ["accounts", query],
-        queryFn: () => getAccounts(query),
-        enabled: query?.enabled ?? true,
+        queryKey: ["accounts", "providers", query],
+        queryFn: () => getProviders(query),
     });
 };
-
 export const useGetAccount = (uuid: string) => {
     return useQuery({
         queryKey: ["account", uuid],

@@ -2,20 +2,22 @@ import axiosInstance from "@/config/api/axios";
 import { ApiRoutes } from "@/config/api/routes";
 import type { Account, AccountQuery } from "../interfaces/account.interfaces";
 
-export const getAccounts = async (query?: AccountQuery): Promise<Account[]> => {
+export const getProviders = async (query?: AccountQuery): Promise<Account[]> => {
     try {
-        const response = await axiosInstance.get(ApiRoutes.accounts.prefix, { params: query });
+        const response = await axiosInstance.get(ApiRoutes.accounts.providers, { params: query });
         return response.data;
     } catch (error) {
-        throw new Error("Failed to fetch accounts. Please try again.");
+        throw new Error("Failed to fetch providers. Please try again.");
     }
 }
 
-export const getAccount = async (uuid: string): Promise<Account> => {
+
+export const getProviderAccount = async (uuid: string): Promise<Account> => {
     try {
-        const response = await axiosInstance.get(`${ApiRoutes.accounts.prefix}/${uuid}`);
+        const response = await axiosInstance.get(`${ApiRoutes.accounts.providers}/${uuid}`);
         return response.data;
     } catch (error) {
+        console.log("error", error);
         throw new Error("Failed to fetch account. Please try again.");
     }
 }

@@ -1,6 +1,7 @@
 export const ApiRoutes = {
     accounts: {
         prefix: "/accounts",
+        providers: "/accounts/providers",
     },
     bookings: {
         prefix: "/bookings",

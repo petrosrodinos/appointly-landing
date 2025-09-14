@@ -1,0 +1,27 @@
+export const CATEGORY_OPTIONS = [
+    { label: "Dentist", value: "dentist" },
+    { label: "Doctor", value: "doctor" },
+    { label: "Physical Therapist", value: "physical_therapist" },
+    { label: "Psychologist", value: "psychologist" },
+    { label: "Psychiatrist", value: "psychiatrist" },
+    { label: "Dermatologist", value: "dermatologist" },
+    { label: "Cardiologist", value: "cardiologist" },
+    { label: "Orthopedist", value: "orthopedist" },
+    { label: "Pediatrician", value: "pediatrician" },
+    { label: "Gynecologist", value: "gynecologist" },
+    { label: "Ophthalmologist", value: "ophthalmologist" },
+    { label: "Neurologist", value: "neurologist" },
+    { label: "Oncologist", value: "oncologist" },
+    { label: "Radiologist", value: "radiologist" },
+    { label: "Anesthesiologist", value: "anesthesiologist" },
+    { label: "Surgeon", value: "surgeon" },
+    { label: "Nurse", value: "nurse" },
+    { label: "Pharmacist", value: "pharmacist" },
+    { label: "Nutritionist", value: "nutritionist" },
+    { label: "Chiropractor", value: "chiropractor" },
+    { label: "Massage Therapist", value: "massage_therapist" },
+    { label: "Acupuncturist", value: "acupuncturist" },
+    { label: "Other", value: "other" },
+];
+
+
