@@ -1,6 +1,9 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { Calendar } from "lucide-react";
+import { environments } from "@/config/environments";
 
 export const Navigation = () => {
   return (
@@ -11,7 +14,7 @@ export const Navigation = () => {
             <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
               <Calendar className="h-5 w-5 text-primary-foreground" />
             </div>
-            <span className="text-xl font-bold">Appointly</span>
+            <span className="text-xl font-bold">{environments.APP_NAME}</span>
           </div>
           <div className="hidden md:flex items-center space-x-8">
             <a href="#features" className="text-sm font-medium hover:text-primary transition-colors">
@@ -29,10 +32,12 @@ export const Navigation = () => {
           </div>
           <div className="flex items-center space-x-4">
             <ThemeToggle />
-            <Button variant="ghost" size="sm">
+            <Button variant="ghost" size="sm" onClick={() => window.open(`${environments.APP_URL}/auth/sign-in`, "_blank")}>
               Sign In
             </Button>
-            <Button size="sm">Start Free Trial</Button>
+            <Button size="sm" onClick={() => window.open(`${environments.APP_URL}/auth/sign-up`, "_blank")}>
+              Start Free Trial
+            </Button>
           </div>
         </div>
       </div>

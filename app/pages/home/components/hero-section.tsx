@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, ArrowRight, Play, Zap } from "lucide-react";
+import { environments } from "@/config/environments";
 
 export const HeroSection = () => {
   return (
@@ -19,9 +20,11 @@ export const HeroSection = () => {
           </h1>
           <p className="text-xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">Create stunning branded booking sites, manage customers with AI-powered insights, automate communications, and grow your business with our comprehensive multi-tenant SaaS platform.</p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
-            <Button size="lg" className="text-lg px-10 py-4 bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 shadow-lg hover:shadow-xl transition-all duration-300">
-              Start Free Trial
-              <ArrowRight className="ml-2 h-5 w-5" />
+            <Button asChild size="lg" className="text-lg px-10 py-4 bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 shadow-lg hover:shadow-xl transition-all duration-300">
+              <a href={`${environments.APP_URL}/auth/sign-up`} target="_blank" rel="noopener noreferrer">
+                Start Free Trial
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </a>
             </Button>
             <Button variant="outline" size="lg" className="text-lg px-10 py-4 border-2 hover:bg-primary/5 transition-all duration-300">
               <Play className="mr-2 h-5 w-5" />

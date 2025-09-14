@@ -12,7 +12,7 @@ export const TestimonialsSection = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <Card>
+          <Card className="border-0">
             <CardContent className="pt-6">
               <div className="flex items-center mb-4">
                 {[...Array(5)].map((_, i) => (
@@ -33,7 +33,7 @@ export const TestimonialsSection = () => {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="border-0">
             <CardContent className="pt-6">
               <div className="flex items-center mb-4">
                 {[...Array(5)].map((_, i) => (
@@ -54,7 +54,7 @@ export const TestimonialsSection = () => {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="border-0">
             <CardContent className="pt-6">
               <div className="flex items-center mb-4">
                 {[...Array(5)].map((_, i) => (

@@ -42,7 +42,7 @@ export const FeaturesSection = () => {
             </CardContent>
           </Card>
 
-          <Card className="group hover:shadow-lg transition-all duration-300">
+          <Card className="group hover:shadow-lg transition-all duration-300 border-0">
             <CardHeader>
               <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                 <Settings className="h-6 w-6 text-primary" />
@@ -68,7 +68,7 @@ export const FeaturesSection = () => {
             </CardContent>
           </Card>
 
-          <Card className="group hover:shadow-lg transition-all duration-300">
+          <Card className="group hover:shadow-lg transition-all duration-300 border-0">
             <CardHeader>
               <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                 <Users className="h-6 w-6 text-primary" />
@@ -94,7 +94,7 @@ export const FeaturesSection = () => {
             </CardContent>
           </Card>
 
-          <Card className="group hover:shadow-lg transition-all duration-300">
+          <Card className="group hover:shadow-lg transition-all duration-300 border-0">
             <CardHeader>
               <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                 <MessageSquare className="h-6 w-6 text-primary" />
@@ -120,7 +120,7 @@ export const FeaturesSection = () => {
             </CardContent>
           </Card>
 
-          <Card className="group hover:shadow-lg transition-all duration-300">
+          <Card className="group hover:shadow-lg transition-all duration-300 border-0">
             <CardHeader>
               <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                 <Mail className="h-6 w-6 text-primary" />
@@ -146,7 +146,7 @@ export const FeaturesSection = () => {
             </CardContent>
           </Card>
 
-          <Card className="group hover:shadow-lg transition-all duration-300">
+          <Card className="group hover:shadow-lg transition-all duration-300 border-0">
             <CardHeader>
               <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                 <BarChart3 className="h-6 w-6 text-primary" />
@@ -172,7 +172,7 @@ export const FeaturesSection = () => {
             </CardContent>
           </Card>
 
-          <Card className="group hover:shadow-lg transition-all duration-300">
+          <Card className="group hover:shadow-lg transition-all duration-300 border-0">
             <CardHeader>
               <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                 <CreditCard className="h-6 w-6 text-primary" />
@@ -198,7 +198,7 @@ export const FeaturesSection = () => {
             </CardContent>
           </Card>
 
-          <Card className="group hover:shadow-lg transition-all duration-300">
+          <Card className="group hover:shadow-lg transition-all duration-300 border-0">
             <CardHeader>
               <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                 <Star className="h-6 w-6 text-primary" />
@@ -224,7 +224,7 @@ export const FeaturesSection = () => {
             </CardContent>
           </Card>
 
-          <Card className="group hover:shadow-lg transition-all duration-300">
+          <Card className="group hover:shadow-lg transition-all duration-300 border-0">
             <CardHeader>
               <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                 <Target className="h-6 w-6 text-primary" />

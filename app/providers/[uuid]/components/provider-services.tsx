@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Calendar, Clock, ChevronRight, MapPin, Users, Star, CreditCard } from "lucide-react";
+import { BookOpen, Calendar, Clock, ChevronRight, MapPin, CreditCard } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import type { Account } from "@/features/account/interfaces/account.interfaces";
 import { formatPrice, formatDuration, getLocationTypeLabel, getLocationTypeDescription, getPaymentTypeLabel, getPaymentTypeDescription } from "../utils/provider.utils";

@@ -92,7 +92,7 @@ export const PricingSection = () => {
             </CardContent>
           </Card>
 
-          <Card className="relative">
+          <Card className="relative border-0">
             <CardHeader>
               <CardTitle>Enterprise</CardTitle>
               <CardDescription>For large businesses with advanced needs</CardDescription>
