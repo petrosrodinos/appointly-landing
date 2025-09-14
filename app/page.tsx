@@ -47,38 +47,39 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20 sm:py-32">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-purple-500/10" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/20 via-transparent to-transparent" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="text-center max-w-4xl mx-auto">
-            <Badge variant="secondary" className="mb-6">
-              <Zap className="h-3 w-3 mr-1" />
+          <div className="text-center max-w-5xl mx-auto">
+            <Badge variant="secondary" className="mb-8 px-4 py-2 text-sm font-medium bg-gradient-to-r from-primary/10 to-purple-500/10 border-primary/20">
+              <Zap className="h-3 w-3 mr-2" />
               Trusted by 10,000+ businesses worldwide
             </Badge>
-            <h1 className="text-4xl sm:text-6xl font-bold tracking-tight mb-6">
+            <h1 className="text-5xl sm:text-7xl font-bold tracking-tight mb-8 bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent">
               Transform Your Business with
-              <span className="text-primary block">Smart Appointment Booking</span>
+              <span className="block bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">Smart Appointment Booking</span>
             </h1>
-            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">Create branded booking sites, manage customers, automate communications, and grow your business with our comprehensive multi-tenant SaaS platform.</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Button size="lg" className="text-lg px-8">
+            <p className="text-xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">Create stunning branded booking sites, manage customers with AI-powered insights, automate communications, and grow your business with our comprehensive multi-tenant SaaS platform.</p>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+              <Button size="lg" className="text-lg px-10 py-4 bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 shadow-lg hover:shadow-xl transition-all duration-300">
                 Start Free Trial
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button variant="outline" size="lg" className="text-lg px-8">
+              <Button variant="outline" size="lg" className="text-lg px-10 py-4 border-2 hover:bg-primary/5 transition-all duration-300">
                 <Play className="mr-2 h-5 w-5" />
                 Watch Demo
               </Button>
             </div>
-            <div className="flex items-center justify-center space-x-8 text-sm text-muted-foreground">
-              <div className="flex items-center">
+            <div className="flex flex-wrap items-center justify-center gap-8 text-sm text-muted-foreground">
+              <div className="flex items-center bg-card/50 px-4 py-2 rounded-full">
                 <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
                 No credit card required
               </div>
-              <div className="flex items-center">
+              <div className="flex items-center bg-card/50 px-4 py-2 rounded-full">
                 <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
                 14-day free trial
               </div>
-              <div className="flex items-center">
+              <div className="flex items-center bg-card/50 px-4 py-2 rounded-full">
                 <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
                 Cancel anytime
               </div>
@@ -88,22 +89,26 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Everything You Need to Grow Your Business</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">Powerful features designed to streamline your operations and delight your customers</p>
+      <section id="features" className="py-20 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/20 to-background" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="text-center mb-20">
+            <Badge variant="outline" className="mb-6 px-4 py-2 text-sm font-medium border-primary/20">
+              Features
+            </Badge>
+            <h2 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">Everything You Need to Grow Your Business</h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">Powerful features designed to streamline your operations and delight your customers with modern, intuitive tools</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Branded Booking Sites */}
-            <Card className="group hover:shadow-lg transition-all duration-300">
-              <CardHeader>
-                <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                  <Globe className="h-6 w-6 text-primary" />
+            <Card className="group hover:shadow-xl hover:shadow-primary/10 transition-all duration-500 border-0 bg-gradient-to-br from-card to-card/50 backdrop-blur-sm">
+              <CardHeader className="p-8">
+                <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-primary/20 to-purple-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-all duration-300">
+                  <Globe className="h-8 w-8 text-primary" />
                 </div>
-                <CardTitle>Branded Booking Sites</CardTitle>
-                <CardDescription>Create stunning, fully customizable booking websites that reflect your brand identity</CardDescription>
+                <CardTitle className="text-xl font-bold mb-3">Branded Booking Sites</CardTitle>
+                <CardDescription className="text-muted-foreground leading-relaxed">Create stunning, fully customizable booking websites that reflect your brand identity with modern design tools</CardDescription>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-sm text-muted-foreground">
@@ -343,22 +348,26 @@ export default function Home() {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Simple, Transparent Pricing</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">Choose the perfect plan for your business. No hidden fees, no surprises.</p>
+      <section id="pricing" className="py-20 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/10 to-background" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="text-center mb-20">
+            <Badge variant="outline" className="mb-6 px-4 py-2 text-sm font-medium border-primary/20">
+              Pricing
+            </Badge>
+            <h2 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">Simple, Transparent Pricing</h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">Choose the perfect plan for your business. No hidden fees, no surprises. Start free and scale as you grow.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {/* Starter Plan */}
-            <Card className="relative">
-              <CardHeader>
-                <CardTitle>Starter</CardTitle>
-                <CardDescription>Perfect for small businesses getting started</CardDescription>
-                <div className="mt-4">
-                  <span className="text-4xl font-bold">$29</span>
-                  <span className="text-muted-foreground">/month</span>
+            <Card className="relative border-0 bg-gradient-to-br from-card to-card/50 backdrop-blur-sm hover:shadow-xl transition-all duration-500">
+              <CardHeader className="p-8">
+                <CardTitle className="text-2xl font-bold mb-2">Starter</CardTitle>
+                <CardDescription className="text-muted-foreground mb-6">Perfect for small businesses getting started</CardDescription>
+                <div className="mb-6">
+                  <span className="text-5xl font-bold bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">$29</span>
+                  <span className="text-muted-foreground text-lg">/month</span>
                 </div>
               </CardHeader>
               <CardContent>
@@ -385,16 +394,16 @@ export default function Home() {
             </Card>
 
             {/* Professional Plan */}
-            <Card className="relative border-primary">
-              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                <Badge className="bg-primary text-primary-foreground">Most Popular</Badge>
+            <Card className="relative border-2 border-primary bg-gradient-to-br from-primary/5 to-purple-500/5 backdrop-blur-sm hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 scale-105">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <Badge className="bg-gradient-to-r from-primary to-purple-600 text-white px-6 py-2 text-sm font-medium shadow-lg">Most Popular</Badge>
               </div>
-              <CardHeader>
-                <CardTitle>Professional</CardTitle>
-                <CardDescription>Ideal for growing businesses</CardDescription>
-                <div className="mt-4">
-                  <span className="text-4xl font-bold">$79</span>
-                  <span className="text-muted-foreground">/month</span>
+              <CardHeader className="p-8">
+                <CardTitle className="text-2xl font-bold mb-2">Professional</CardTitle>
+                <CardDescription className="text-muted-foreground mb-6">Ideal for growing businesses</CardDescription>
+                <div className="mb-6">
+                  <span className="text-5xl font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">$79</span>
+                  <span className="text-muted-foreground text-lg">/month</span>
                 </div>
               </CardHeader>
               <CardContent>
