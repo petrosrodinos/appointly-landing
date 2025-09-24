@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import ProviderHeader from "./components/provider-header";
 import ProviderProfile from "./components/provider-profile";
 import ProviderServices from "./components/provider-services";
+import ProviderRatings from "./components/provider-ratings";
 import BookingSidebar from "./components/booking-sidebar";
 
 interface ProviderProfilePageProps {
@@ -29,8 +30,6 @@ const ProviderProfilePage = async ({ params }: ProviderProfilePageProps) => {
     notFound();
   }
 
-  const location = `${provider.city}, ${provider.country}`;
-
   return (
     <TooltipProvider>
       <div className="min-h-screen">
@@ -41,7 +40,8 @@ const ProviderProfilePage = async ({ params }: ProviderProfilePageProps) => {
             <div className="container mx-auto px-4 py-8">
               <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
                 <div className="xl:col-span-2 space-y-8">
-                  <ProviderProfile provider={provider} location={location} />
+                  <ProviderProfile provider={provider} />
+                  <ProviderRatings provider={provider} />
                   <ProviderServices provider={provider} />
                 </div>
 

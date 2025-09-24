@@ -1,29 +1,40 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Calendar, Clock3 } from "lucide-react";
+import { Clock3, AlertTriangle } from "lucide-react";
 import type { Account } from "@/features/account/interfaces/account.interfaces";
-import { formatTime, getDayName } from "../utils/provider.utils";
+import { formatTime, getDayName, getClosurePeriodMessage } from "../utils/provider.utils";
 
 interface BookingSidebarProps {
   provider: Account;
 }
 
 const BookingSidebar = ({ provider }: BookingSidebarProps) => {
+  const closureMessage = getClosurePeriodMessage(provider.closure_periods);
+
   return (
     <div className="space-y-6">
+      {closureMessage && (
+        <Card className="bg-orange-50 dark:bg-orange-950/20 border-orange-200 dark:border-orange-800 shadow-xl">
+          <CardContent className="pt-6">
+            <div className="flex items-start gap-3">
+              <AlertTriangle className="w-5 h-5 text-orange-600 dark:text-orange-400 mt-0.5 flex-shrink-0" />
+              <div>
+                <h3 className="font-semibold text-orange-800 dark:text-orange-200 mb-1">Closure Notice</h3>
+                <p className="text-orange-700 dark:text-orange-300 text-sm">{closureMessage}</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
       <Card className="bg-card shadow-xl border border-border">
         <CardHeader className="pb-4">
           <h2 className="text-2xl font-bold text-foreground flex items-center gap-3">
-            <Calendar className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-            Book Appointment
+            <Clock3 className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+            Opening Hours
           </h2>
-          <p className="text-muted-foreground">Schedule your appointment</p>
+          <p className="text-muted-foreground">Our business hours</p>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="space-y-4">
-            <h3 className="font-semibold text-foreground flex items-center gap-2">
-              <Clock3 className="w-5 h-5 text-green-600 dark:text-green-400" />
-              Opening Hours
-            </h3>
             {provider.oppening_hours ? (
               <div className="space-y-3">
                 {(() => {

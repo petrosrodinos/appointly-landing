@@ -2,6 +2,7 @@ import type { Document } from "@/features/documents/interfaces/documents.interfa
 import { Coordinates } from "@/features/google-maps/interfaces/address.interface";
 import { Service } from "@/features/services/interfaces/services.interfaces";
 import { OpeningHoursResponse } from "@/features/opening-hours/interfaces/opening-hours.interfaces";
+import { ClosurePeriod } from "@/features/closure-periods/interfaces/closure-periods.interfaces";
 
 export interface Account {
     id: string;
@@ -30,6 +31,7 @@ export interface Account {
     archived: boolean;
     services: Service[];
     oppening_hours: OpeningHoursResponse;
+    closure_periods: ClosurePeriod[];
     created_at: string;
     updated_at: string;
 }

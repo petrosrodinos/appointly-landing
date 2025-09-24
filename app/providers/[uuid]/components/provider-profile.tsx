@@ -7,10 +7,9 @@ import Image from "next/image";
 
 interface ProviderProfileProps {
   provider: Account;
-  location: string;
 }
 
-const ProviderProfile = ({ provider, location }: ProviderProfileProps) => {
+const ProviderProfile = ({ provider }: ProviderProfileProps) => {
   return (
     <div className="relative overflow-hidden rounded-2xl bg-card shadow-xl border border-border">
       {provider.banner && (
@@ -60,9 +59,7 @@ const ProviderProfile = ({ provider, location }: ProviderProfileProps) => {
                 <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
                   <MapPin className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                 </div>
-                <span className="font-medium">
-                  {provider.address}, {location}
-                </span>
+                <span className="font-medium">{provider.address}</span>
               </div>
 
               {provider.phone && (

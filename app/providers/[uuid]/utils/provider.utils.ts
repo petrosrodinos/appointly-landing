@@ -1,4 +1,5 @@
 import { LocationTypes, PaymentTypes } from "@/features/services/interfaces/services.interfaces";
+import { ClosurePeriod } from "@/features/closure-periods/interfaces/closure-periods.interfaces";
 
 export const formatTime = (time: string) => {
     return new Date(`2000-01-01T${time}`).toLocaleTimeString("en-US", {
@@ -69,4 +70,32 @@ export const getPaymentTypeDescription = (paymentType: PaymentTypes) => {
         [PaymentTypes.CARD]: "Payment accepted via credit/debit card",
     };
     return descriptions[paymentType] || "Payment method information";
+};
+
+export const isDateInClosurePeriod = (date: Date, closurePeriod: ClosurePeriod): boolean => {
+    if (!closurePeriod.enabled) return false;
+
+    const periodStart = new Date(closurePeriod.date_from);
+    const periodEnd = closurePeriod.date_to ? new Date(closurePeriod.date_to) : periodStart;
+
+    return date >= periodStart && date <= periodEnd;
+};
+
+export const getClosurePeriodMessage = (closurePeriods: ClosurePeriod[]): string | null => {
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    const todayClosure = closurePeriods.find(period => isDateInClosurePeriod(today, period));
+    const tomorrowClosure = closurePeriods.find(period => isDateInClosurePeriod(tomorrow, period));
+
+    if (todayClosure) {
+        return `We're currently closed due to: ${todayClosure.description || 'Scheduled closure'}`;
+    }
+
+    if (tomorrowClosure) {
+        return `We'll be closed tomorrow due to: ${tomorrowClosure.description || 'Scheduled closure'}`;
+    }
+
+    return null;
 };
