@@ -8,6 +8,7 @@ import ProviderProfile from "./components/provider-profile";
 import ProviderServices from "./components/provider-services";
 import ProviderRatings from "./components/provider-ratings";
 import BookingSidebar from "./components/booking-sidebar";
+import AccountImageGallery from "./components/account-image-gallery";
 
 interface ProviderProfilePageProps {
   params: {
@@ -41,6 +42,7 @@ const ProviderProfilePage = async ({ params }: ProviderProfilePageProps) => {
               <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
                 <div className="xl:col-span-2 space-y-8">
                   <ProviderProfile provider={provider} />
+                  <AccountImageGallery images={provider.images} providerTitle={provider.title} />
                   <ProviderRatings provider={provider} />
                   <ProviderServices provider={provider} />
                 </div>

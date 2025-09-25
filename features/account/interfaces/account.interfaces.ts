@@ -32,6 +32,7 @@ export interface Account {
     services: Service[];
     oppening_hours: OpeningHoursResponse;
     closure_periods: ClosurePeriod[];
+    images: Document[];
     created_at: string;
     updated_at: string;
 }
