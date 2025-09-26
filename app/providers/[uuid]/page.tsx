@@ -43,8 +43,8 @@ const ProviderProfilePage = async ({ params }: ProviderProfilePageProps) => {
                 <div className="xl:col-span-2 space-y-8">
                   <ProviderProfile provider={provider} />
                   <AccountImageGallery images={provider.images} providerTitle={provider.title} />
-                  <ProviderRatings provider={provider} />
                   <ProviderServices provider={provider} />
+                  <ProviderRatings provider={provider} />
                 </div>
 
                 <BookingSidebar provider={provider} />
