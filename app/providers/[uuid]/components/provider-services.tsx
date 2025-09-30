@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -11,6 +11,8 @@ import { formatPrice, formatDuration, getLocationTypeLabel, getLocationTypeDescr
 import { environments } from "@/config/environments";
 import Image from "next/image";
 import ImageModal from "./image-modal";
+import { sendEvent } from "@/features/analytics-events/services/analytics-events.services";
+import { AnalyticsEventsTypes } from "@/features/analytics-events/interfaces/analytics-events.interfaces";
 
 interface ProviderServicesProps {
   provider: Account;
@@ -20,6 +22,13 @@ const ProviderServices = ({ provider }: ProviderServicesProps) => {
   const [imageModalOpen, setImageModalOpen] = useState(false);
   const [selectedImages, setSelectedImages] = useState<Array<{ url: string; alt?: string }>>([]);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+  useEffect(() => {
+    sendEvent({
+      type: AnalyticsEventsTypes.PROVIDER_PAGE_VIEW,
+      provider_uuid: provider.uuid,
+    });
+  }, [provider]);
 
   if (!provider.services || provider.services.length === 0) {
     return null;

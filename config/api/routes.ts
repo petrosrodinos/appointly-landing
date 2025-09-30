@@ -14,4 +14,7 @@ export const ApiRoutes = {
         prefix: "/google-maps",
         timezone: "/google-maps/timezone",
     },
+    analytics_events: {
+        prefix: "/analytics-events",
+    },
 }
