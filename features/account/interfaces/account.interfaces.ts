@@ -57,6 +57,98 @@ export interface AccountQuery {
 }
 
 
+export interface SeoResponse {
+    metatags: MetaTags;
+    jsonLd: JsonLd;
+}
+
+export interface MetaTags {
+    title: string;
+    description: string;
+    keywords: string;
+    authors: { name: string }[];
+    openGraph: {
+        title: string;
+        description: string;
+        type: string;
+        locale: string;
+        siteName: string;
+        images: {
+            url: string;
+            width: number;
+            height: number;
+            alt: string;
+        }[];
+    };
+    twitter: {
+        card: string;
+        title: string;
+        description: string;
+        images: string[];
+    };
+    alternates: {
+        canonical: string;
+    };
+    other: {
+        "business:contact_data:street_address"?: string;
+        "business:contact_data:locality"?: string;
+        "business:contact_data:postal_code"?: string;
+        "business:contact_data:country_name"?: string;
+        "business:contact_data:email"?: string;
+        "business:contact_data:phone_number"?: string;
+    };
+}
+
+
+export interface JsonLd {
+    "@context": "https://schema.org";
+    "@type": string;
+    name: string;
+    image?: string;
+    address: {
+        "@type": "PostalAddress";
+        addressLocality?: string;
+        addressRegion?: string;
+        streetAddress?: string;
+        postalCode?: string;
+    };
+    telephone?: string;
+    url: string;
+    description?: string;
+    priceRange?: string;
+    geo?: {
+        "@type": "GeoCoordinates";
+        latitude: number;
+        longitude: number;
+    };
+    openingHoursSpecification?: {
+        "@type": "OpeningHoursSpecification";
+        dayOfWeek: string;
+        opens: string;
+        closes: string;
+    }[];
+    hasOfferCatalog?: {
+        "@type": "OfferCatalog";
+        name: string;
+        itemListElement: {
+            "@type": "Offer";
+            itemOffered: {
+                "@type": "Service";
+                name: string;
+                description?: string;
+            };
+            price?: number;
+            priceCurrency?: string;
+        }[];
+    };
+    aggregateRating?: {
+        "@type": "AggregateRating";
+        ratingValue: number;
+        reviewCount: number;
+    };
+}
+
+
 export const AccountTypes = {
     CLIENT: 'CLIENT',
     PROVIDER: 'PROVIDER',

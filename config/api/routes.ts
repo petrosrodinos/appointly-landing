@@ -2,6 +2,7 @@ export const ApiRoutes = {
     accounts: {
         prefix: "/accounts",
         providers: "/accounts/providers",
+        seo: (uuid_or_slug: string) => `/accounts/seo/${uuid_or_slug}`,
     },
     bookings: {
         prefix: "/bookings",
