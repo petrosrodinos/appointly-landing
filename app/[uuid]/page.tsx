@@ -11,6 +11,7 @@ import BookingSidebar from "./components/booking-sidebar";
 import AccountImageGallery from "./components/account-image-gallery";
 import type { Metadata } from "next";
 import { OpeningHour } from "@/features/opening-hours/interfaces/opening-hours.interfaces";
+import { getBusinessType } from "@/features/account/utils/account.utils";
 
 interface ProviderProfilePageProps {
   params: {
@@ -101,7 +102,7 @@ const ProviderProfilePage = async ({ params }: ProviderProfilePageProps) => {
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": getBusinessType(provider.category),
     name: provider.title,
     image: provider.logo?.url,
     address: {
@@ -132,6 +133,27 @@ const ProviderProfilePage = async ({ params }: ProviderProfilePageProps) => {
           }))
         )
       : undefined,
+    hasOfferCatalog:
+      provider.services && provider.services.length > 0
+        ? {
+            "@type": "OfferCatalog",
+            name: "Available Services",
+            itemListElement: provider.services.map((service) => ({
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: service.name,
+                description: service.description,
+              },
+              ...(service.price
+                ? {
+                    price: service.price,
+                    priceCurrency: "EUR",
+                  }
+                : {}),
+            })),
+          }
+        : undefined,
   };
 
   return (
