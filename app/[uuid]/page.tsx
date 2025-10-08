@@ -10,6 +10,7 @@ import ProviderRatings from "./components/provider-ratings";
 import BookingSidebar from "./components/booking-sidebar";
 import AccountImageGallery from "./components/account-image-gallery";
 import type { Metadata } from "next";
+import { OpeningHour } from "@/features/opening-hours/interfaces/opening-hours.interfaces";
 
 interface ProviderProfilePageProps {
   params: {
@@ -98,6 +99,41 @@ const ProviderProfilePage = async ({ params }: ProviderProfilePageProps) => {
     notFound();
   }
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: provider.title,
+    image: provider.logo?.url,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: provider.city,
+      addressRegion: provider.country,
+      streetAddress: provider.address,
+      postalCode: provider.zip_code,
+    },
+    telephone: provider.phone,
+    url: `${process.env.NEXT_PUBLIC_LANDING_URL}/${provider.slug}`,
+    description: provider.description,
+    priceRange: "$$",
+    geo: provider.coordinates
+      ? {
+          "@type": "GeoCoordinates",
+          latitude: provider.coordinates.lat,
+          longitude: provider.coordinates.lng,
+        }
+      : undefined,
+    openingHoursSpecification: provider.oppening_hours
+      ? Object.entries(provider.oppening_hours).flatMap(([day, hoursArray]) =>
+          hoursArray.map((hours: OpeningHour) => ({
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: day.charAt(0).toUpperCase() + day.slice(1),
+            opens: hours.open_time,
+            closes: hours.close_time,
+          }))
+        )
+      : undefined,
+  };
+
   return (
     <TooltipProvider>
       <div className="min-h-screen">
@@ -120,6 +156,7 @@ const ProviderProfilePage = async ({ params }: ProviderProfilePageProps) => {
           </div>
         </div>
       </div>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     </TooltipProvider>
   );
 };
