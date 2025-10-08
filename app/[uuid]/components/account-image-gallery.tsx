@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Eye, Camera, Building2 } from "lucide-react";
+import { Eye } from "lucide-react";
 import ImageModal from "./image-modal";
 import type { Document } from "@/features/documents/interfaces/documents.interfaces";
 
@@ -24,7 +24,7 @@ const AccountImageGallery = ({ images, providerTitle }: AccountImageGalleryProps
 
   const modalImages = images.map((image) => ({
     url: image.url,
-    alt: `${providerTitle} portfolio image`,
+    alt: `${providerTitle}`,
   }));
 
   return (

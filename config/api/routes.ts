@@ -17,4 +17,8 @@ export const ApiRoutes = {
     analytics_events: {
         prefix: "/analytics-events",
     },
+    ratings: {
+        prefix: "/ratings",
+        average: (provider_uuid: string) => `/ratings/average/${provider_uuid}`,
+    },
 }
