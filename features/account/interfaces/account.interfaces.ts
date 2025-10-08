@@ -16,6 +16,7 @@ export interface Account {
     category: string;
     title: string;
     description: string;
+    slug: string;
     country: string;
     city: string;
     address: string;
