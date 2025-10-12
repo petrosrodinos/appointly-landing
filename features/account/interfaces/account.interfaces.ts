@@ -37,6 +37,7 @@ export interface Account {
     created_at: string;
     updated_at: string;
     client_customers: Account[];
+    seo: SeoResponse;
 }
 
 

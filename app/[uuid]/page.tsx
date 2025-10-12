@@ -1,5 +1,5 @@
 import React from "react";
-import { getAccountSeo, getProviderAccount } from "@/features/account/services/account.services";
+import { getProviderAccount } from "@/features/account/services/account.services";
 import type { Account } from "@/features/account/interfaces/account.interfaces";
 import { notFound } from "next/navigation";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -9,36 +9,12 @@ import ProviderServices from "./components/provider-services";
 import ProviderRatings from "./components/provider-ratings";
 import BookingSidebar from "./components/booking-sidebar";
 import AccountImageGallery from "./components/account-image-gallery";
-import type { Metadata } from "next";
-import { OpeningHour } from "@/features/opening-hours/interfaces/opening-hours.interfaces";
-import { getBusinessType } from "@/features/account/utils/account.utils";
 
 interface ProviderProfilePageProps {
   params: {
     uuid: string;
   };
 }
-
-export const generateMetadata = async ({ params }: ProviderProfilePageProps): Promise<Metadata> => {
-  try {
-    const { uuid } = await params;
-    const accountSeo = await getAccountSeo(uuid);
-
-    if (!accountSeo) {
-      return {
-        title: "Provider Not Found",
-        description: "The requested provider could not be found.",
-      };
-    }
-
-    return accountSeo.metatags;
-  } catch (error) {
-    return {
-      title: "Provider Not Found",
-      description: "The requested provider could not be found.",
-    };
-  }
-};
 
 const ProviderProfilePage = async ({ params }: ProviderProfilePageProps) => {
   let provider: Account | null = null;
@@ -55,8 +31,6 @@ const ProviderProfilePage = async ({ params }: ProviderProfilePageProps) => {
     notFound();
   }
 
-  const accountSeo = await getAccountSeo(provider.slug);
-
   return (
     <TooltipProvider>
       <div className="min-h-screen">
@@ -72,14 +46,13 @@ const ProviderProfilePage = async ({ params }: ProviderProfilePageProps) => {
                   <ProviderServices provider={provider} />
                   <ProviderRatings provider={provider} />
                 </div>
-
                 <BookingSidebar provider={provider} />
               </div>
             </div>
           </div>
         </div>
       </div>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(accountSeo) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(provider?.seo?.jsonLd || {}) }} />
     </TooltipProvider>
   );
 };

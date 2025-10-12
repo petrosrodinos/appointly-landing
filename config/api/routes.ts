@@ -4,9 +4,12 @@ export const ApiRoutes = {
         providers: "/accounts/providers",
         seo: (uuid_or_slug: string) => `/accounts/seo/${uuid_or_slug}`,
     },
+    account_themes: {
+        prefix: "/account-themes",
+        providers: (uuid: string) => `/account-themes/providers/${uuid}`,
+    },
     bookings: {
         prefix: "/bookings",
-        availability: "/bookings/availability",
     },
     services: {
         prefix: "/services",
