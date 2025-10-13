@@ -48,6 +48,10 @@
 body {
   background: linear-gradient(135deg, var(--color-background) 0%, #f8fafc 100%);
   color: var(--color-foreground);
+  font-family: var(--font-family, Inter), sans-serif;
+  font-size: var(--font-size, 16px);
+  line-height: var(--line-height, 1.6);
+  letter-spacing: var(--letter-spacing, 0em);
   font-feature-settings: "rlig" 1, "calt" 1;
 }
 

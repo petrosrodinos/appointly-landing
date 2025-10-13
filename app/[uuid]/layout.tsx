@@ -51,6 +51,10 @@ export default async function ProviderLayout({
           ["--color-foreground" as any]: theme?.foreground,
           ["--color-muted" as any]: theme?.muted,
           ["--color-accent" as any]: theme?.accent,
+          ["--font-family" as any]: theme?.font_family,
+          ["--font-size" as any]: theme?.font_size,
+          ["--line-height" as any]: theme?.line_height,
+          ["--letter-spacing" as any]: theme?.letter_spacing,
         }}
         className="antialiased"
       >

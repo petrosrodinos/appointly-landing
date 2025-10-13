@@ -44,6 +44,18 @@ const config: Config = {
                     foreground: "var(--color-card-foreground)",
                 },
             },
+            fontFamily: {
+                sans: ["var(--font-family, Inter)", "sans-serif"],
+            },
+            fontSize: {
+                base: "var(--font-size, 16px)",
+            },
+            lineHeight: {
+                base: "var(--line-height, 1.6)",
+            },
+            letterSpacing: {
+                base: "var(--letter-spacing, 0em)",
+            },
             borderRadius: {
                 lg: "var(--radius)",
                 md: "calc(var(--radius) - 2px)",
