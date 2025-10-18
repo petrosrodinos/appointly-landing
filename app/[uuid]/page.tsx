@@ -10,6 +10,7 @@ import ProviderRatings from "./components/provider-ratings";
 import BookingSidebar from "./components/booking-sidebar";
 import AccountImageGallery from "./components/account-image-gallery";
 import { ProviderFooter } from "./components/provider-footer";
+import { ChatBubble } from "./components/chat-bubble";
 
 interface ProviderProfilePageProps {
   params: {
@@ -61,6 +62,7 @@ const ProviderProfilePage = async ({ params }: ProviderProfilePageProps) => {
           </div>
         </div>
         <ProviderFooter provider={provider} />
+        <ChatBubble provider={provider} />
       </div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(provider?.seo?.jsonLd || {}) }} />
     </TooltipProvider>
