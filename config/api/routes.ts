@@ -25,4 +25,8 @@ export const ApiRoutes = {
         prefix: "/ratings",
         average: (provider_uuid: string) => `/ratings/average/${provider_uuid}`,
     },
+    chats: {
+        prefix: "/chats",
+        landing: "/chats/messages/landing-page",
+    },
 }

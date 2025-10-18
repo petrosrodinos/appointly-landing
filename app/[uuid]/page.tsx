@@ -9,6 +9,7 @@ import ProviderServices from "./components/provider-services";
 import ProviderRatings from "./components/provider-ratings";
 import BookingSidebar from "./components/booking-sidebar";
 import AccountImageGallery from "./components/account-image-gallery";
+import { ProviderFooter } from "./components/provider-footer";
 
 interface ProviderProfilePageProps {
   params: {
@@ -41,16 +42,25 @@ const ProviderProfilePage = async ({ params }: ProviderProfilePageProps) => {
             <div className="container mx-auto px-4 py-8">
               <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
                 <div className="xl:col-span-2 space-y-8">
-                  <ProviderProfile provider={provider} />
-                  <AccountImageGallery images={provider.images} providerTitle={provider.title} />
-                  <ProviderServices provider={provider} />
-                  <ProviderRatings provider={provider} />
+                  <div id="profile">
+                    <ProviderProfile provider={provider} />
+                  </div>
+                  <div id="gallery">
+                    <AccountImageGallery images={provider.images} providerTitle={provider.title} />
+                  </div>
+                  <div id="services">
+                    <ProviderServices provider={provider} />
+                  </div>
+                  <div id="ratings">
+                    <ProviderRatings provider={provider} />
+                  </div>
                 </div>
                 <BookingSidebar provider={provider} />
               </div>
             </div>
           </div>
         </div>
+        <ProviderFooter provider={provider} />
       </div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(provider?.seo?.jsonLd || {}) }} />
     </TooltipProvider>
