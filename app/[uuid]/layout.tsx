@@ -3,9 +3,9 @@ import { getAccountSeo } from "@/features/account/services/account.services";
 import { getAccountTheme } from "@/features/account-themes/services/account-themes.services";
 
 interface ProviderProfilePageProps {
-  params: {
+  params: Promise<{
     uuid: string;
-  };
+  }>;
 }
 
 export const generateMetadata = async ({ params }: ProviderProfilePageProps): Promise<Metadata> => {
@@ -34,9 +34,9 @@ export default async function ProviderLayout({
   params,
 }: Readonly<{
   children: React.ReactNode;
-  params: {
+  params: Promise<{
     uuid: string;
-  };
+  }>;
 }>) {
   const { uuid } = await params;
   const theme = await getAccountTheme(uuid);

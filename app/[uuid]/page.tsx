@@ -13,9 +13,9 @@ import { ProviderFooter } from "./components/provider-footer";
 import { ChatBubble } from "./components/chat-bubble";
 
 interface ProviderProfilePageProps {
-  params: {
+  params: Promise<{
     uuid: string;
-  };
+  }>;
 }
 
 const ProviderProfilePage = async ({ params }: ProviderProfilePageProps) => {
