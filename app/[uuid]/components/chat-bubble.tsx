@@ -75,13 +75,19 @@ export const ChatBubble = ({ provider }: ChatBubbleProps) => {
           <SheetDescription>Fill out the form below and we'll get back to you as soon as possible.</SheetDescription>
         </SheetHeader>
         {messageSent && (
-          <div className="mt-4 p-3 bg-primary/10 border border-primary/20 rounded-lg flex items-start gap-3">
-            <Mail className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-            <p className="text-sm text-muted-foreground">
-              Please check your
-              <span className="font-semibold text-foreground">{form.watch("confirmation_message_provider") === "email" ? " email " : " SMS "}</span>
-              inbox to continue our discussion in a private chat.
-            </p>
+          <div className="mt-4 space-y-4">
+            <div className="p-3 bg-primary/10 border border-primary/20 rounded-lg flex items-start gap-3">
+              <Mail className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+              <p className="text-sm text-muted-foreground">
+                Please check your
+                <span className="font-semibold text-foreground">{form.watch("confirmation_message_provider") === "email" ? " email " : " SMS "}</span>
+                inbox to continue our discussion in a private chat.
+              </p>
+            </div>
+            <Button onClick={() => setMessageSent(false)} className="w-full" variant="outline">
+              <Send className="mr-2 h-4 w-4" />
+              Send Another Message
+            </Button>
           </div>
         )}
         {!messageSent && (
