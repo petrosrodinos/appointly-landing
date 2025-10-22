@@ -9,6 +9,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
 import { useCreateMessageLanding } from "@/features/chat/hooks/use-chat";
 import { contactFormSchema, type ContactFormType } from "@/features/chat/validation-schemas/contact-form.schema";
 import { toast } from "@/hooks/use-toast";
@@ -33,6 +35,7 @@ export const ChatBubble = ({ provider }: ChatBubbleProps) => {
       email: "",
       phone: "",
       content: "",
+      confirmation_message_provider: "email",
     },
   });
 
@@ -75,7 +78,9 @@ export const ChatBubble = ({ provider }: ChatBubbleProps) => {
           <div className="mt-4 p-3 bg-primary/10 border border-primary/20 rounded-lg flex items-start gap-3">
             <Mail className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
             <p className="text-sm text-muted-foreground">
-              Please check your email inbox to continue the discussion with <span className="font-semibold text-foreground">{title}</span> in a private chat when they reply.
+              Please check your
+              <span className="font-semibold text-foreground">{form.watch("confirmation_message_provider") === "email" ? " email " : " SMS "}</span>
+              inbox to continue our discussion in a private chat.
             </p>
           </div>
         )}
@@ -142,6 +147,32 @@ export const ChatBubble = ({ provider }: ChatBubbleProps) => {
                     <FormLabel>Message</FormLabel>
                     <FormControl>
                       <Textarea placeholder="Tell us how we can help you..." className="min-h-[120px] resize-none" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="confirmation_message_provider"
+                render={({ field }) => (
+                  <FormItem className="space-y-3">
+                    <FormLabel>Select where you want to receive a confirmation message to continue our conversation.</FormLabel>
+                    <FormControl className="mt-2">
+                      <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex flex-col space-y-2">
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="email" id="email" />
+                          <Label htmlFor="email" className="font-normal cursor-pointer">
+                            Send me an email
+                          </Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="sms" id="sms" />
+                          <Label htmlFor="sms" className="font-normal cursor-pointer">
+                            Send me an SMS
+                          </Label>
+                        </div>
+                      </RadioGroup>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
