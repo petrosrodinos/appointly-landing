@@ -8,9 +8,9 @@ export const sendEvent = async (event: CreateAnalyticsEventDto) => {
     const blob = new Blob([payload], { type: 'application/json' });
 
     try {
-        const sent = navigator.sendBeacon(url, blob);
+        // const sent = navigator.sendBeacon(url, blob);
 
-        if (!sent) {
+        if (true) {
             await fetch(url, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
