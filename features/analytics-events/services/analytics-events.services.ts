@@ -3,8 +3,24 @@ import type { CreateAnalyticsEventDto } from "../interfaces/analytics-events.int
 import { environments } from "@/config/environments";
 
 export const sendEvent = async (event: CreateAnalyticsEventDto) => {
-    const blob = new Blob([JSON.stringify(event)], { type: 'application/json' });
-    navigator.sendBeacon(`${environments.API_URL}${ApiRoutes.analytics_events.prefix}`, blob);
-}
+    const url = `${environments.API_URL}${ApiRoutes.analytics_events.prefix}`;
+    const payload = JSON.stringify(event);
+    const blob = new Blob([payload], { type: 'application/json' });
+
+    try {
+        const sent = navigator.sendBeacon(url, blob);
+
+        if (!sent) {
+            await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: payload,
+                keepalive: true,
+            });
+        }
+    } catch (err) {
+        console.error("Failed to send beacon:", err);
+    }
+};
 
 
