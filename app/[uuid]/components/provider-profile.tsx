@@ -23,7 +23,7 @@ const ProviderProfile = ({ provider }: ProviderProfileProps) => {
         <div className="flex flex-col md:flex-row items-start gap-6">
           <div className={`relative ${provider.banner ? "-mt-16" : ""}`}>
             <Avatar className="w-32 h-32 border-4 border-card shadow-2xl">
-              <AvatarImage src={provider.logo?.url || "/placeholder-avatar.jpg"} alt={provider.title} />
+              <AvatarImage src={provider.logo?.url} alt={provider.title} />
               <AvatarFallback className="text-2xl font-bold">
                 {provider.first_name[0]}
                 {provider.last_name[0]}

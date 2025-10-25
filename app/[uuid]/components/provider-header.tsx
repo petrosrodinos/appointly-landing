@@ -30,7 +30,7 @@ const ProviderHeader = ({ provider }: ProviderHeaderProps) => {
         <div className="flex items-center justify-between relative">
           <div className="flex items-center gap-3">
             <Avatar className="w-10 h-10">
-              <AvatarImage src={provider.logo?.url || "/placeholder-avatar.jpg"} alt={provider.title} />
+              <AvatarImage src={provider.logo?.url} alt={provider.title} />
               <AvatarFallback className="text-sm font-semibold">
                 {provider.first_name[0]}
                 {provider.last_name[0]}

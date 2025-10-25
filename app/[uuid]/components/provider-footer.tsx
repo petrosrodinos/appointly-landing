@@ -18,7 +18,7 @@ export const ProviderFooter = ({ provider }: ProviderFooterProps) => {
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
               <Avatar className="w-12 h-12">
-                <AvatarImage src={provider.logo?.url || "/placeholder-avatar.jpg"} alt={provider.title} />
+                <AvatarImage src={provider.logo?.url} alt={provider.title} />
                 <AvatarFallback className="text-sm font-semibold">
                   {provider.first_name[0]}
                   {provider.last_name[0]}

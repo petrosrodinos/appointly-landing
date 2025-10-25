@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -19,16 +20,27 @@ interface ProviderServicesProps {
 }
 
 const ProviderServices = ({ provider }: ProviderServicesProps) => {
+  const searchParams = useSearchParams();
   const [imageModalOpen, setImageModalOpen] = useState(false);
   const [selectedImages, setSelectedImages] = useState<Array<{ url: string; alt?: string }>>([]);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   useEffect(() => {
+    const utmCampaign = searchParams.get("utm_campaign");
+
     sendEvent({
       type: AnalyticsEventsTypes.PROVIDER_PAGE_VIEW,
       provider_uuid: provider.uuid,
     });
-  }, [provider]);
+
+    if (utmCampaign) {
+      sendEvent({
+        type: AnalyticsEventsTypes.CAMPAIGN_PROVIDER_PAGE_VIEW,
+        provider_uuid: provider.uuid,
+        campaign_uuid: utmCampaign,
+      });
+    }
+  }, [provider, searchParams]);
 
   if (!provider.services || provider.services.length === 0) {
     return null;
