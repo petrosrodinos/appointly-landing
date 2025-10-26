@@ -13,13 +13,13 @@ const BookingSidebar = ({ provider }: BookingSidebarProps) => {
   return (
     <div className="space-y-6">
       {closureMessage && (
-        <Card className="bg-orange-50 dark:bg-orange-950/20 border-orange-200 dark:border-orange-800 shadow-xl">
+        <Card className="bg-yellow-400 dark:bg-yellow-900 shadow-xl border-0">
           <CardContent className="pt-6">
             <div className="flex items-start gap-3">
-              <AlertTriangle className="w-5 h-5 text-orange-600 dark:text-orange-400 mt-0.5 flex-shrink-0" />
+              <AlertTriangle className="w-5 h-5 text-yellow-800 dark:text-yellow-200 mt-0.5 flex-shrink-0" />
               <div>
-                <h3 className="font-semibold text-orange-800 dark:text-orange-200 mb-1">Closure Notice</h3>
-                <p className="text-orange-700 dark:text-orange-300 text-sm">{closureMessage}</p>
+                <h3 className="font-semibold text-yellow-900 dark:text-yellow-100 mb-1">Closure Notice</h3>
+                <p className="text-yellow-800 dark:text-yellow-50 text-sm">{closureMessage}</p>
               </div>
             </div>
           </CardContent>

@@ -15,6 +15,7 @@ import { useCreateMessageLanding } from "@/features/chat/hooks/use-chat";
 import { contactFormSchema, type ContactFormType } from "@/features/chat/validation-schemas/contact-form.schema";
 import { toast } from "@/hooks/use-toast";
 import { Account } from "@/features/account/interfaces/account.interfaces";
+import { ConfirmationMessageChannels } from "@/features/chat/interfaces/chat.interfaces";
 
 interface ChatBubbleProps {
   provider: Account;
@@ -25,7 +26,7 @@ export const ChatBubble = ({ provider }: ChatBubbleProps) => {
   const [messageSent, setMessageSent] = useState(false);
   const { mutate: sendMessage, isPending } = useCreateMessageLanding();
 
-  const { uuid, title } = provider;
+  const { uuid } = provider;
 
   const form = useForm<ContactFormType>({
     resolver: zodResolver(contactFormSchema),
@@ -35,7 +36,7 @@ export const ChatBubble = ({ provider }: ChatBubbleProps) => {
       email: "",
       phone: "",
       content: "",
-      confirmation_message_provider: "email",
+      confirmation_message_channel: ConfirmationMessageChannels.EMAIL,
     },
   });
 
@@ -80,7 +81,7 @@ export const ChatBubble = ({ provider }: ChatBubbleProps) => {
               <Mail className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
               <p className="text-sm text-muted-foreground">
                 Please check your
-                <span className="font-semibold text-foreground">{form.watch("confirmation_message_provider") === "email" ? " email " : " SMS "}</span>
+                <span className="font-semibold text-foreground">{form.watch("confirmation_message_channel") === ConfirmationMessageChannels.EMAIL ? " email " : " SMS "}</span>
                 inbox to continue our discussion in a private chat.
               </p>
             </div>
@@ -160,20 +161,20 @@ export const ChatBubble = ({ provider }: ChatBubbleProps) => {
               />
               <FormField
                 control={form.control}
-                name="confirmation_message_provider"
+                name="confirmation_message_channel"
                 render={({ field }) => (
                   <FormItem className="space-y-3">
                     <FormLabel>Select where you want to receive a confirmation message to continue our conversation.</FormLabel>
                     <FormControl className="mt-2">
                       <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex flex-col space-y-2">
                         <div className="flex items-center space-x-2">
-                          <RadioGroupItem value="email" id="email" />
+                          <RadioGroupItem value={ConfirmationMessageChannels.EMAIL} id="email" />
                           <Label htmlFor="email" className="font-normal cursor-pointer">
                             Send me an email
                           </Label>
                         </div>
                         <div className="flex items-center space-x-2">
-                          <RadioGroupItem value="sms" id="sms" />
+                          <RadioGroupItem value={ConfirmationMessageChannels.SMS} id="sms" />
                           <Label htmlFor="sms" className="font-normal cursor-pointer">
                             Send me an SMS
                           </Label>
