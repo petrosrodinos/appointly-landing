@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { MessageCircle, Send, Mail, Loader2, Bot } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import ReactMarkdown from "react-markdown";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
@@ -218,7 +219,13 @@ export const ChatBubble = ({ provider }: ChatBubbleProps) => {
                       </div>
                     )}
                     <div className={`max-w-[80%] rounded-lg p-3 ${isClientMessage ? "bg-primary text-primary-foreground" : "bg-muted"}`}>
-                      <p className="text-sm">{message.content}</p>
+                      {message.type === ChatMessageTypes.AUTO_RESPONSE ? (
+                        <div className="text-sm prose prose-sm dark:prose-invert max-w-none">
+                          <ReactMarkdown>{message.content}</ReactMarkdown>
+                        </div>
+                      ) : (
+                        <p className="text-sm">{message.content}</p>
+                      )}
                     </div>
                   </div>
                 );
