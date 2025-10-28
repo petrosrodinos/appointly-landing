@@ -1,15 +1,27 @@
-import { useMutation } from "@tanstack/react-query";
-import { createMessageLanding } from "../services/chat.services";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { createMessageLanding, getMessagesLanding } from "../services/chat.services";
 import { toast } from "@/hooks/use-toast";
+import { GetMessagesLandingDto } from "../interfaces/chat.interfaces";
 
 export const useCreateMessageLanding = () => {
+    const queryClient = useQueryClient();
     return useMutation({
         mutationFn: createMessageLanding,
         onError: (error) => {
+            queryClient.invalidateQueries({ queryKey: ["messages_landing"] });
             toast({
                 title: "Could not send message",
                 description: error.message,
             });
         },
+    });
+}
+
+export const useGetMessagesLanding = (payload: GetMessagesLandingDto & { enabled?: boolean }) => {
+    return useQuery({
+        queryKey: ["messages_landing"],
+        queryFn: () => getMessagesLanding(payload),
+        enabled: !!payload.provider_uuid && !!payload.client_uuid && !!payload.include_messages && !!payload.enabled,
+        retry: false,
     });
 }
