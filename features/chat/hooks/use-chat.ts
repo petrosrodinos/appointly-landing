@@ -1,12 +1,16 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createMessageLanding, getMessagesLanding } from "../services/chat.services";
 import { GetMessagesLandingDto } from "../interfaces/chat.interfaces";
 
 export const useCreateMessageLanding = () => {
+    const queryClient = useQueryClient();
     return useMutation({
         mutationFn: createMessageLanding,
-        retryDelay: 5000,
-        retry: 2,
+        onError: () => {
+            setTimeout(() => {
+                queryClient.invalidateQueries({ queryKey: ["messages_landing"] });
+            }, 5000);
+        },
     });
 }
 
