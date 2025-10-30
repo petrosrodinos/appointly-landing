@@ -11,6 +11,7 @@ import BookingSidebar from "./components/booking-sidebar";
 import AccountImageGallery from "./components/account-image-gallery";
 import { ProviderFooter } from "./components/provider-footer";
 import { ChatBubble } from "./components/chat-bubble";
+import ProviderFaqs from "./components/provider-faqs";
 
 interface ProviderProfilePageProps {
   params: Promise<{
@@ -51,6 +52,9 @@ const ProviderProfilePage = async ({ params }: ProviderProfilePageProps) => {
                   </div>
                   <div id="services">
                     <ProviderServices provider={provider} />
+                  </div>
+                  <div id="faqs">
+                    <ProviderFaqs provider={provider} />
                   </div>
                   <div id="ratings">
                     <ProviderRatings provider={provider} />
