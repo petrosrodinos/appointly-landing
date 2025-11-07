@@ -6,7 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import ProviderHeader from "./components/provider-header";
 import ProviderProfile from "./components/provider-profile";
 import ProviderServices from "./components/provider-services";
-import ProviderRatings from "./components/provider-ratings";
+import ProviderRatings from "./components/ratings/provider-ratings";
 import BookingSidebar from "./components/booking-sidebar";
 import AccountImageGallery from "./components/account-image-gallery";
 import { ProviderFooter } from "./components/provider-footer";

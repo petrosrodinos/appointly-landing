@@ -2,6 +2,8 @@
 
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import type { RatingQuery } from "@/features/ratings/interfaces/ratings.interfaces";
 import StarRating from "@/components/ui/star-rating";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -18,14 +20,30 @@ interface CustomerReviewsProps {
 }
 
 const CustomerReviews = ({ provider }: CustomerReviewsProps) => {
-  const { data: ratingsData, isLoading } = useGetRatings({
-    provider_uuid: provider.uuid,
-    limit: 20,
-    order_by: "created_at",
-    order_direction: "desc",
-  });
+  const pageSize = 5;
+  const [page, setPage] = React.useState(1);
+  const ratingsQuery = React.useMemo<RatingQuery>(
+    () => ({
+      provider_uuid: provider.uuid,
+      limit: pageSize,
+      page,
+      order_by: "created_at",
+      order_direction: "desc",
+    }),
+    [page, provider.uuid]
+  );
+  const { data: ratingsData, isLoading } = useGetRatings(ratingsQuery);
+  React.useEffect(() => {
+    setPage(1);
+  }, [provider.uuid]);
 
   const reviews = ratingsData?.data || [];
+  const totalReviews = ratingsData?.pagination?.total || 0;
+  const totalPages = ratingsData?.pagination?.total_pages || 1;
+  const hasNext = ratingsData?.pagination?.has_next || false;
+  const hasPrev = ratingsData?.pagination?.has_prev || false;
+  const showingStart = reviews.length > 0 ? (page - 1) * pageSize + 1 : 0;
+  const showingEnd = reviews.length > 0 ? showingStart + reviews.length - 1 : 0;
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("en-US", {
@@ -90,7 +108,7 @@ const CustomerReviews = ({ provider }: CustomerReviewsProps) => {
         <p className="text-sm text-muted-foreground">What our customers are saying</p>
       </div>
 
-      <ScrollArea className="h-96 w-full">
+      <ScrollArea className="w-full max-h-96">
         <div className="space-y-4 pr-4">
           {reviews.map((review) => (
             <div key={review.uuid} className="p-4 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors">
@@ -143,11 +161,26 @@ const CustomerReviews = ({ provider }: CustomerReviewsProps) => {
         </div>
       </ScrollArea>
 
-      <div className="mt-4 pt-4 border-t border-border">
-        <p className="text-sm text-center text-muted-foreground">
-          Showing {reviews.length} of {ratingsData?.pagination?.total || reviews.length} reviews
-        </p>
-      </div>
+      {totalPages > 1 && (
+        <div className="mt-4 pt-4 border-t border-border">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-sm text-center text-muted-foreground sm:text-left">
+              Showing {showingStart}-{showingEnd} of {totalReviews} reviews
+            </p>
+            <div className="flex items-center justify-center gap-2 sm:justify-end">
+              <Button variant="outline" size="sm" onClick={() => hasPrev && setPage((prev) => Math.max(prev - 1, 1))} disabled={!hasPrev}>
+                Previous
+              </Button>
+              <span className="text-sm text-muted-foreground">
+                Page {page} of {totalPages}
+              </span>
+              <Button variant="outline" size="sm" onClick={() => hasNext && setPage((prev) => prev + 1)} disabled={!hasNext}>
+                Next
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

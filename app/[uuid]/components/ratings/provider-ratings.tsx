@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import StarRating from "@/components/ui/star-rating";
 import { Skeleton } from "@/components/ui/skeleton";
 import CustomerReviews from "./customer-reviews";
+import AiSentiment from "./ai-sentiment";
 import { Heart, Clock, Users, Award } from "lucide-react";
 import { useGetAverageRating, useGetRatings } from "@/features/ratings/hooks/use-ratings";
 
@@ -126,6 +127,8 @@ const ProviderRatings = ({ provider }: ProviderRatingsProps) => {
             </div>
           ))}
         </div>
+
+        <AiSentiment sentiment_text={averageRating?.ratings_landing_sentiment || ""} />
 
         <div className="pt-8 border-t border-border">
           <CustomerReviews provider={provider} />

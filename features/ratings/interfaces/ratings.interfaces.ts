@@ -39,6 +39,7 @@ export interface RatingQuery {
 export interface AverageRating {
     average_rating: number;
     total_ratings: number;
+    ratings_landing_sentiment: string;
     ratings_breakdown: {
         punctuality: number;
         friendliness: number;
