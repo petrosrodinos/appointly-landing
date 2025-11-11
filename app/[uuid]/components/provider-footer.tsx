@@ -3,6 +3,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Mail, Phone, MapPin } from "lucide-react";
 import type { Account } from "@/features/account/interfaces/account.interfaces";
 import { getCategoryLabel } from "@/features/account/utils/account.utils";
+import Link from "next/link";
+import { environments } from "@/config/environments/index";
 
 interface ProviderFooterProps {
   provider: Account;
@@ -89,7 +91,9 @@ export const ProviderFooter = ({ provider }: ProviderFooterProps) => {
           <p className="text-sm text-muted-foreground">
             © {currentYear} {provider.title}. All rights reserved.
           </p>
-          <p className="text-sm text-muted-foreground mt-4 md:mt-0">Powered by Appointly</p>
+          <Link href={environments.LANDING_URL || ""} target="_blank" className="text-sm text-foreground font-medium mt-4 md:mt-0 hover:text-primary transition-colors">
+            Powered by Appointly
+          </Link>
         </div>
       </div>
     </footer>

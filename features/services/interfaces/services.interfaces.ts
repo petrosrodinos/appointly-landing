@@ -61,6 +61,7 @@ export const LocationTypes = {
 } as const;
 
 export const PaymentTypes = {
+    ONLINE_PAYMENT: "ONLINE_PAYMENT",
     CASH: "CASH",
     CARD: "CARD",
 } as const;

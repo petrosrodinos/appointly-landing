@@ -53,31 +53,6 @@ const ProviderProfile = ({ provider }: ProviderProfileProps) => {
             </div>
 
             {provider.description && <p className="text-muted-foreground leading-relaxed text-lg">{provider.description}</p>}
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-6">
-              <div className="flex items-center gap-3 text-muted-foreground">
-                <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
-                  <MapPin className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                </div>
-                <span className="font-medium">{provider.address}</span>
-              </div>
-
-              {provider.phone && (
-                <div className="flex items-center gap-3 text-muted-foreground">
-                  <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded-lg">
-                    <Phone className="w-5 h-5 text-green-600 dark:text-green-400" />
-                  </div>
-                  <span className="font-medium">{provider.phone}</span>
-                </div>
-              )}
-
-              <div className="flex items-center gap-3 text-muted-foreground">
-                <div className="p-2 bg-purple-100 dark:bg-purple-900/30 rounded-lg">
-                  <Mail className="w-5 h-5 text-purple-600 dark:text-purple-400" />
-                </div>
-                <span className="font-medium">{provider.email}</span>
-              </div>
-            </div>
           </div>
         </div>
       </div>

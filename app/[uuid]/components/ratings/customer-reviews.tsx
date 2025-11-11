@@ -104,7 +104,7 @@ const CustomerReviews = ({ provider }: CustomerReviewsProps) => {
   return (
     <>
       <div className="mb-4">
-        <h3 className="text-xl font-bold text-foreground">Customer Reviews</h3>
+        <h3 className="text-xl font-bold text-foreground">Reviews</h3>
         <p className="text-sm text-muted-foreground">What our customers are saying</p>
       </div>
 

@@ -1,12 +1,11 @@
+import { DateTime } from "luxon";
 import { LocationTypes, PaymentTypes } from "@/features/services/interfaces/services.interfaces";
 import { ClosurePeriod } from "@/features/closure-periods/interfaces/closure-periods.interfaces";
 
 export const formatTime = (time: string) => {
-    return new Date(`2000-01-01T${time}`).toLocaleTimeString("en-US", {
-        hour: "numeric",
-        minute: "2-digit",
-        hour12: true,
-    });
+    const normalized = time.length > 5 ? time : `${time}:00`;
+    const dateTime = DateTime.fromFormat(normalized, "HH:mm:ss");
+    return dateTime.isValid ? dateTime.toFormat("h:mm a") : time;
 };
 
 export const formatPrice = (price: number) => {
@@ -50,8 +49,8 @@ export const getLocationTypeLabel = (locationType: LocationTypes) => {
 export const getLocationTypeDescription = (locationType: LocationTypes) => {
     const descriptions = {
         [LocationTypes.ONLINE]: "Service provided remotely via video call or online platform",
-        [LocationTypes.OFFICE]: "Service provided at the provider's office location",
-        [LocationTypes.HOME]: "Service provided at the client's home or preferred location",
+        [LocationTypes.OFFICE]: "Service provided at our office location",
+        [LocationTypes.HOME]: "Service provided at your home or preferred location",
     };
     return descriptions[locationType] || "Location type information";
 };
@@ -60,14 +59,16 @@ export const getPaymentTypeLabel = (paymentType: PaymentTypes) => {
     const labels = {
         [PaymentTypes.CASH]: "Cash",
         [PaymentTypes.CARD]: "Card",
+        [PaymentTypes.ONLINE_PAYMENT]: "Online Payment",
     };
     return labels[paymentType] || paymentType;
 };
 
 export const getPaymentTypeDescription = (paymentType: PaymentTypes) => {
     const descriptions = {
-        [PaymentTypes.CASH]: "Payment accepted in cash",
-        [PaymentTypes.CARD]: "Payment accepted via credit/debit card",
+        [PaymentTypes.CASH]: "Pay in cash directly at the time of your appointment.",
+        [PaymentTypes.CARD]: "Securely pay using any major credit or debit card at the time of your appointment.",
+        [PaymentTypes.ONLINE_PAYMENT]: "Complete your payment online before the appointment.",
     };
     return descriptions[paymentType] || "Payment method information";
 };

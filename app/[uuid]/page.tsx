@@ -7,7 +7,7 @@ import ProviderHeader from "./components/provider-header";
 import ProviderProfile from "./components/provider-profile";
 import ProviderServices from "./components/provider-services";
 import ProviderRatings from "./components/ratings/provider-ratings";
-import BookingSidebar from "./components/booking-sidebar";
+import { BookingSidebar } from "./components/booking-sidebar";
 import AccountImageGallery from "./components/account-image-gallery";
 import { ProviderFooter } from "./components/provider-footer";
 import { ChatBubble } from "./components/chat-bubble";
@@ -43,15 +43,15 @@ const ProviderProfilePage = async ({ params }: ProviderProfilePageProps) => {
 
             <div className="container mx-auto px-4 py-8">
               <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
-                <div className="xl:col-span-2 space-y-8">
+                <div className="xl:col-span-2 space-y-4">
                   <div id="profile">
                     <ProviderProfile provider={provider} />
                   </div>
-                  <div id="gallery">
-                    <AccountImageGallery images={provider.images} providerTitle={provider.title} />
-                  </div>
                   <div id="services">
                     <ProviderServices provider={provider} />
+                  </div>
+                  <div id="gallery">
+                    <AccountImageGallery images={provider.images} providerTitle={provider.title} />
                   </div>
                   <div id="faqs">
                     <ProviderFaqs provider={provider} />

@@ -8,26 +8,26 @@ interface ProviderProfilePageProps {
   }>;
 }
 
-// export const generateMetadata = async ({ params }: ProviderProfilePageProps): Promise<Metadata> => {
-//   try {
-//     const { uuid } = await params;
-//     const accountSeo = await getAccountSeo(uuid);
+export const generateMetadata = async ({ params }: ProviderProfilePageProps): Promise<Metadata> => {
+  try {
+    const { uuid } = await params;
+    const accountSeo = await getAccountSeo(uuid);
 
-//     if (!accountSeo) {
-//       return {
-//         title: "Provider Not Found",
-//         description: "The requested provider could not be found.",
-//       };
-//     }
+    if (!accountSeo) {
+      return {
+        title: "Provider Not Found",
+        description: "The requested provider could not be found.",
+      };
+    }
 
-//     return accountSeo.metatags;
-//   } catch (error) {
-//     return {
-//       title: "Provider Not Found",
-//       description: "The requested provider could not be found.",
-//     };
-//   }
-// };
+    return accountSeo.metatags;
+  } catch (error) {
+    return {
+      title: "Provider Not Found",
+      description: "The requested provider could not be found.",
+    };
+  }
+};
 
 export default async function ProviderLayout({
   children,
