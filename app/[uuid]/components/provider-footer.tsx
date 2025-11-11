@@ -5,6 +5,7 @@ import type { Account } from "@/features/account/interfaces/account.interfaces";
 import { getCategoryLabel } from "@/features/account/utils/account.utils";
 import Link from "next/link";
 import { environments } from "@/config/environments/index";
+import { getGoogleMapsUrl } from "@/lib/utils";
 
 interface ProviderFooterProps {
   provider: Account;
@@ -55,7 +56,9 @@ export const ProviderFooter = ({ provider }: ProviderFooterProps) => {
               {provider.address && (
                 <li className="flex items-center gap-2">
                   <MapPin className="h-4 w-4" />
-                  <span>{provider.address}</span>
+                  <a href={getGoogleMapsUrl(provider.coordinates) ?? ""} target="_blank" className="hover:text-primary transition-colors">
+                    {provider.address}
+                  </a>
                 </li>
               )}
             </ul>

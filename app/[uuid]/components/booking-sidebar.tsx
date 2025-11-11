@@ -9,6 +9,7 @@ import { formatTime, getDayName, getClosurePeriodMessage } from "../utils/provid
 import { getWeeklyHours, getProviderDateTime, getStatusLabel, getTodayStatus } from "../utils/booking-sidebar.utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useGetAverageRating } from "@/features/ratings/hooks/use-ratings";
+import { getGoogleMapsUrl } from "@/lib/utils";
 
 interface BookingSidebarProps {
   provider: Account;
@@ -109,7 +110,9 @@ export const BookingSidebar = ({ provider }: BookingSidebarProps) => {
                 <MapPin className="w-5 h-5" />
               </div>
               <div className="text-sm text-muted-foreground">
-                <p className="text-foreground font-semibold">{provider.address}</p>
+                <a href={getGoogleMapsUrl(provider.coordinates) ?? ""} target="_blank" className="hover:text-primary transition-colors">
+                  {provider.address}
+                </a>
               </div>
             </div>
             <div className="space-y-3">
