@@ -115,7 +115,7 @@ export const ChatBubble = ({ provider }: ChatBubbleProps) => {
     const payload: any = {
       provider_uuid: uuid,
       client_uuid: client?.uuid,
-      content: "I would like to speak to the provider directly.",
+      content: `I would like to speak to ${provider.title} directly.`,
       human_chat: true,
       confirmation_message_channel: selectedChannel,
     };
