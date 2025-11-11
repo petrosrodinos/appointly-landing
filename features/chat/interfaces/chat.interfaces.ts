@@ -60,6 +60,7 @@ export interface GetMessagesLandingDto {
 export interface CreateMessageLandingResponse {
     message: ChatMessage;
     client: Account;
+    chat_agent_enabled: boolean;
 }
 
 export interface ChatMessagesResponse {

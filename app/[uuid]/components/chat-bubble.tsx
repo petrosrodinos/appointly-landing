@@ -96,6 +96,9 @@ export const ChatBubble = ({ provider }: ChatBubbleProps) => {
     sendMessage(payload, {
       onSuccess: (response) => {
         setClient(response.client);
+        if (!response.chat_agent_enabled) {
+          setShowChannelSelection(true);
+        }
         form.reset({
           first_name: response.client?.first_name || "",
           last_name: response.client?.last_name || "",
@@ -137,7 +140,10 @@ export const ChatBubble = ({ provider }: ChatBubbleProps) => {
     };
 
     sendMessage(payload, {
-      onSuccess: () => {
+      onSuccess: (response) => {
+        if (!response.chat_agent_enabled) {
+          setShowChannelSelection(true);
+        }
         setNewMessage("");
         refetchMessages();
       },
@@ -146,11 +152,7 @@ export const ChatBubble = ({ provider }: ChatBubbleProps) => {
 
   const handleSpeakToProvider = (value: boolean) => {
     setSelectedSpeakToProvider(value);
-    if (value) {
-      setShowChannelSelection(true);
-    } else {
-      setShowChannelSelection(false);
-    }
+    setShowChannelSelection(value);
   };
 
   const handleOpenChange = (open: boolean) => {
@@ -175,7 +177,7 @@ export const ChatBubble = ({ provider }: ChatBubbleProps) => {
       </SheetTrigger>
       <SheetContent className="w-full sm:max-w-md flex flex-col p-0">
         <SheetHeader className="px-6 pt-6 pb-4">
-          <SheetTitle>{hasMessages ? "Chat" : "Send us a message"}</SheetTitle>
+          <SheetTitle>{hasMessages ? `${provider?.title}` : "Send us a message"}</SheetTitle>
           <SheetDescription>{hasMessages ? "Continue our conversation" : "Fill out the form below and we'll get back to you as soon as possible."}</SheetDescription>
         </SheetHeader>
 
@@ -246,7 +248,7 @@ export const ChatBubble = ({ provider }: ChatBubbleProps) => {
               {showChannelSelection && (
                 <div className="border-t pt-4 space-y-3">
                   <div className="space-y-3">
-                    <Label className="text-sm font-medium">Select where you want to receive a confirmation message to continue our discussion in a private chat.</Label>
+                    <Label className="text-sm font-medium">We received your message! Select where you want to receive a confirmation message to continue our discussion in a private chat.</Label>
                     <RadioGroup onValueChange={setSelectedChannel} defaultValue={selectedChannel} className="flex flex-col space-y-2">
                       <div className="flex items-center space-x-2">
                         <RadioGroupItem value={ConfirmationMessageChannels.EMAIL} id="email" />
@@ -269,7 +271,7 @@ export const ChatBubble = ({ provider }: ChatBubbleProps) => {
                         Sending...
                       </>
                     ) : (
-                      "Contact Provider"
+                      "Continue Chat"
                     )}
                   </Button>
                 </div>
@@ -374,32 +376,36 @@ export const ChatBubble = ({ provider }: ChatBubbleProps) => {
                   />
                 </>
               )}
-              <FormField
-                control={form.control}
-                name="content"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Message</FormLabel>
-                    <FormControl>
-                      <Textarea placeholder="Tell us how we can help you..." className="min-h-[120px] resize-none" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button type="submit" className="w-full" disabled={isPending}>
-                {isPending ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Sending...
-                  </>
-                ) : (
-                  <>
-                    <Send className="mr-2 h-4 w-4" />
-                    Send Message
-                  </>
-                )}
-              </Button>
+              {!isLoadingMessages && (
+                <>
+                  <FormField
+                    control={form.control}
+                    name="content"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Message</FormLabel>
+                        <FormControl>
+                          <Textarea placeholder="Tell us how we can help you..." className="min-h-[120px] resize-none" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <Button type="submit" className="w-full" disabled={isPending}>
+                    {isPending ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="mr-2 h-4 w-4" />
+                        Send Message
+                      </>
+                    )}
+                  </Button>
+                </>
+              )}
             </form>
           </Form>
         )}
